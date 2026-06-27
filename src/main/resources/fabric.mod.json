@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "betamod",
+  "version": "${version}",
+
+  "name": "Beta Mod",
+  "description": "this is a beta mod :)",
+  "authors": [
+    "DaVinciJ"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/betamod/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "stationapi:event_bus": [
+      "davincij.betamod.events.init.InitListener",
+      "davincij.betamod.ItemListener"
+    ],
+    "stationapi:event_bus_client": [
+    ],
+    "stationapi:event_bus_server": [
+    ]
+  },
+  "mixins": [
+    "betamod.mixins.json"
+  ],
+
+  "depends": {
+    "minecraft": "1.0.0-beta.7.3"
+  }
+}
