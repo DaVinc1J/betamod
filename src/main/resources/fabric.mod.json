@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Beta Mod",
-  "description": "this is a beta mod :)",
+  "description": "this is a beta mod",
   "authors": [
     "DaVinciJ"
   ],
@@ -12,7 +12,6 @@
     "homepage": "",
     "sources": ""
   },
-
   "license": "CC0-1.0",
   "icon": "assets/betamod/icon.png",
 
@@ -20,7 +19,7 @@
   "entrypoints": {
     "stationapi:event_bus": [
       "davincij.betamod.events.init.InitListener",
-      "davincij.betamod.ItemListener"
+      "davincij.betamod.events.init.ItemListener"
     ],
     "stationapi:event_bus_client": [
     ],
