@@ -1,7 +1,7 @@
 { 
   "parent": "minecraft:block/cube_column",
   "textures": { 
-    "end": "betamod:block/silverwood_log/end",                
-    "side": "betamod:block/silverwood_log/side" 
+    "end": "betamod:block/silverwood_log_end",                
+    "side": "betamod:block/silverwood_log_side" 
   } 
 }
