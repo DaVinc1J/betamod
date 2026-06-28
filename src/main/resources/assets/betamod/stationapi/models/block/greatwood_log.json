@@ -1,7 +1,0 @@
-{ 
-  "parent": "minecraft:block/cube_column",
-  "textures": { 
-    "end": "betamod:block/greatwood_log_end",                
-    "side": "betamod:block/greatwood_log_side" 
-  } 
-}

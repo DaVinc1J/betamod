@@ -2,9 +2,9 @@ package davincij.betamod;
 
 import net.minecraft.block.Block;
 
-public class bm_blocks {
-  public static Block greatwood_log;
-  public static Block silverwood_log;
+public class blocks {
+  public static Block greatwood;
+  public static Block silverwood;
   public static Block greatwood_planks;
   public static Block silverwood_planks;
 }

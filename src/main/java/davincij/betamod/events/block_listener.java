@@ -1,6 +1,6 @@
-package davincij.betamod.events.init;
+package davincij.betamod.events;
 
-import davincij.betamod.bm_blocks;
+import davincij.betamod.blocks;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -15,15 +15,17 @@ public class block_listener {
 
   @EventListener
   public void registerBlocks(BlockRegistryEvent event) {
-    bm_blocks.greatwood_log = simple_block("greatwood_log", Material.WOOD);
-    bm_blocks.silverwood_log = simple_block("silverwood_log", Material.WOOD);
-    bm_blocks.greatwood_planks = simple_block("greatwood_planks", Material.WOOD);
-    bm_blocks.silverwood_planks = simple_block("silverwood_planks", Material.WOOD);
+    blocks.greatwood = wood("greatwood", Material.WOOD);
+    blocks.silverwood = wood("silverwood", Material.WOOD);
+    blocks.greatwood_planks = wood("greatwood_planks", Material.WOOD);
+    blocks.silverwood_planks = wood("silverwood_planks", Material.WOOD);
   }
 
-  private static Block simple_block(String name, Material material) {
+  private static Block wood(String name, Material material) {
     TemplateBlock block = new TemplateBlock(NAMESPACE.id(name), material);
     block.setHardness(2.0F);
+    block.setResistance(5.0F);
+    block.setSoundGroup(Block.WOOD_SOUND_GROUP);
     block.setTranslationKey(NAMESPACE, name);
     return block;
   }

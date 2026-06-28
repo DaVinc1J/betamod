@@ -1,6 +1,6 @@
-package davincij.betamod.events.init;
+package davincij.betamod.events;
 
-import davincij.betamod.bm_items;
+import davincij.betamod.items;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.item.Item;
 import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;

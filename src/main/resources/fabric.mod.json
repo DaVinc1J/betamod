@@ -19,8 +19,9 @@
   "entrypoints": {
     "stationapi:event_bus": [
       "davincij.betamod.events.init.init_listener",
-      "davincij.betamod.events.init.item_listener",
-      "davincij.betamod.events.init.block_listener"
+      "davincij.betamod.events.item_listener",
+      "davincij.betamod.events.block_listener",
+      "davincij.betamod.events.recipe_listener"
     ],
     "stationapi:event_bus_client": [
     ],
