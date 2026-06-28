@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": { 
-    "all": "betamod:block/silverwood_planks"
+    "all": "betamod:block/copper_block"
   }
 }

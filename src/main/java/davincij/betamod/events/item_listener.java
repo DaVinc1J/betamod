@@ -14,10 +14,11 @@ public class item_listener {
 
   @EventListener
   public void registerItems(ItemRegistryEvent event) {
-    //
+    items.copper_ingot = item("copper_ingot");
+    items.copper_wire = item("copper_wire");
   }
 
-  private static Item simple_item(String name) {
+  private static Item item(String name) {
     return new TemplateItem(NAMESPACE.id(name)).setTranslationKey(NAMESPACE, name);
   }
 }

@@ -1,5 +1,5 @@
 # @ is a shorthand for the current mod id, which is betamod. E.g: tile.@.redclay.name
-tile.@.greatwood.name=Greatwood Log
-tile.@.silverwood.name=Silverwood Log
-tile.@.greatwood_planks.name=Greatwood Planks
-tile.@.silverwood_planks.name=Silverwood Planks
+tile.@.copper_ore.name = Copper Ore
+tile.@.copper_block.name = Copper Block
+item.@.copper_ingot.name = Copper Ingot
+item.@.copper_wire.name = Copper Wire

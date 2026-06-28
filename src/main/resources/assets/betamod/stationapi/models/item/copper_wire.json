@@ -1,0 +1,6 @@
+{  
+  "parent": "item/generated",  
+  "textures": {  
+    "layer0": "betamod:item/copper_wire"
+  }  
+}
