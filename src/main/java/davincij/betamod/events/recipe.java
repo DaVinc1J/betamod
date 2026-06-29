@@ -26,7 +26,7 @@ public class recipe {
     if (type == RecipeRegisterEvent.Vanilla.CRAFTING_SHAPED) {
 
       CraftingRegistry.addShapedRecipe(
-          new ItemStack(block.shaft), 
+          new ItemStack(block.copper_block), 
           "ooo", "ooo", "ooo", 
           'o', new ItemStack(item.copper_ingot));
 

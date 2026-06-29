@@ -1,7 +1,8 @@
 {
   "textures": {
     "side": "betamod:block/shaft_side",
-    "end": "betamod:block/shaft_end"
+    "end": "betamod:block/shaft_end",
+    "particle": "betamod:block/shaft_side"
   },
   "elements": [
     {

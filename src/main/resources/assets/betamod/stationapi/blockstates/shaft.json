@@ -1,7 +1,7 @@
 {
   "variants": {
-    "0": { "model": "betamod:block/shaft" },
-    "1": { "model": "betamod:block/shaft", "z": 90 },
-    "2": { "model": "betamod:block/shaft", "y": 90 }
+    "axis=x": { "model": "betamod:block/shaft_hori" },
+    "axis=y": { "model": "betamod:block/shaft_vert" },
+    "axis=z": { "model": "betamod:block/shaft_hori", "y": 90 }
   }
 }
