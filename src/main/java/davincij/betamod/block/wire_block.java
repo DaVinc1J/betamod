@@ -138,7 +138,8 @@ public class wire_block extends TemplateBlockWithEntity {
   private void add_box(ArrayList boxes, Box mask, int x, int y, int z,
                        float x0, float y0, float z0, float x1, float y1, float z1) {
     Box piece = Box.createCached(x + x0, y + y0, z + z0, x + x1, y + y1, z + z1);
-    if (mask.intersects(piece)) boxes.add(piece);
+    if (mask.intersects(piece)) 
+      boxes.add(piece);
   }
 
   private void update_boundings(World world, int x, int y, int z) {

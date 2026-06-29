@@ -63,7 +63,9 @@ public class shaft_block extends TemplateBlockWithEntity {
 
   @Override
   protected BlockEntity createBlockEntity() {
-    return new mechanical_block_entity();
+    mechanical_block_entity s = new mechanical_block_entity();
+    s.set_rpm(20.0F);
+    return s;
   }
 
   @Override
@@ -79,8 +81,7 @@ public class shaft_block extends TemplateBlockWithEntity {
   @Override
   public void onPlaced(World world, int x, int y, int z, LivingEntity living) {
     axis a = get_axis_from_player_look(living);
-    world.setBlockStateWithoutNotifyingNeighbors(x, y, z, getDefaultState().with(AXIS, a));
-    world.blockUpdateEvent(x, y, z);
+    set_axis(world, x, y, z, a);
   }
 
   @Override

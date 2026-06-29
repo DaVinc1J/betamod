@@ -5,6 +5,8 @@ import net.minecraft.block.entity.BlockEntity;
 
 public class mechanical_block_entity extends BlockEntity {
   private float rpm;
+  public float prev_angle;
+  public float angle;
 
   public float get_rpm() {
     return rpm;
@@ -12,6 +14,11 @@ public class mechanical_block_entity extends BlockEntity {
 
   public void set_rpm(float rpm) {
     this.rpm = rpm;
+  }
+
+  public void tick_client() {
+    prev_angle = angle;
+    angle = (angle + rpm * 0.3f) % 360f;
   }
 
   @Override
