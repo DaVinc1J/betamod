@@ -9,23 +9,27 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.modificationstation.stationapi.api.block.BlockState;
+import net.modificationstation.stationapi.api.state.StateManager;
+import net.modificationstation.stationapi.api.state.property.BooleanProperty;
 import net.modificationstation.stationapi.api.template.block.TemplateBlock;
 import net.modificationstation.stationapi.api.util.Identifier;
+import net.modificationstation.stationapi.api.world.BlockStateView;
 
 public class wire_block extends TemplateBlock {
   public enum Direction {
-    NORTH(0, 0, 0, -1),
-    SOUTH(1, 0, 0, 1),
-    EAST(2, 1, 0, 0),
-    WEST(3, -1, 0, 0),
-    UP(4, 0, 1, 0),
-    DOWN(5, 0, -1, 0);
+    NORTH("north", 0, 0, -1),
+    SOUTH("south", 0, 0, 1),
+    EAST("east", 1, 0, 0),
+    WEST("west", -1, 0, 0),
+    UP("up", 0, 1, 0),
+    DOWN("down", 0, -1, 0);
 
-    public final int bit;
+    public final BooleanProperty property;
     public final int dx, dy, dz;
 
-    Direction(int bit, int dx, int dy, int dz) {
-      this.bit = bit;
+    Direction(String name, int dx, int dy, int dz) {
+      this.property = BooleanProperty.of(name);
       this.dx = dx;
       this.dy = dy;
       this.dz = dz;
@@ -39,6 +43,20 @@ public class wire_block extends TemplateBlock {
     setResistance(resistance);
     setSoundGroup(sg);
     setBoundingBox(0.375F, 0.375F, 0.375F, 0.625F, 0.625F, 0.625F);
+    
+    BlockState defaultState = getDefaultState();
+    for (Direction dir : Direction.values()) {
+      defaultState = defaultState.with(dir.property, false);
+    }
+    setDefaultState(defaultState);
+  }
+
+  @Override
+  public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    super.appendProperties(builder);
+    for (Direction dir : Direction.values()) {
+      builder.add(dir.property);
+    }
   }
 
   @Override
@@ -71,15 +89,15 @@ public class wire_block extends TemplateBlock {
     float min = 0.375F, max = 0.625F;
     float x0 = min, y0 = min, z0 = min, x1 = max, y1 = max, z1 = max;
     
-    if (view.getBlockId(x, y, z) == this.id) {
-      int metadata = view.getBlockMeta(x, y, z);
+    if (view instanceof BlockStateView stateView && view.getBlockId(x, y, z) == this.id) {
+      BlockState s = stateView.getBlockState(x, y, z);
       
-      if (is_connected(metadata, Direction.WEST))  x0 = 0.0F;
-      if (is_connected(metadata, Direction.EAST))  x1 = 1.0F;
-      if (is_connected(metadata, Direction.DOWN))  y0 = 0.0F;
-      if (is_connected(metadata, Direction.UP))    y1 = 1.0F;
-      if (is_connected(metadata, Direction.NORTH)) z0 = 0.0F;
-      if (is_connected(metadata, Direction.SOUTH)) z1 = 1.0F;
+      if (s.get(Direction.WEST.property))  x0 = 0.0F;
+      if (s.get(Direction.EAST.property))  x1 = 1.0F;
+      if (s.get(Direction.DOWN.property))  y0 = 0.0F;
+      if (s.get(Direction.UP.property))    y1 = 1.0F;
+      if (s.get(Direction.NORTH.property)) z0 = 0.0F;
+      if (s.get(Direction.SOUTH.property)) z1 = 1.0F;
     }
     setBoundingBox(x0, y0, z0, x1, y1, z1);
   }
@@ -89,21 +107,21 @@ public class wire_block extends TemplateBlock {
     if (!is_wire(world, x, y, z)) return;
     
     float min = 0.375F, max = 0.625F;
-    int metadata = world.getBlockMeta(x, y, z);
+    BlockState s = world.getBlockState(x, y, z);
 
     add_box(boxes, box, x, y, z, min, min, min, max, max, max); // core node
     
-    if (is_connected(metadata, Direction.NORTH))
+    if (s.get(Direction.NORTH.property))
       add_box(boxes, box, x, y, z, min, min, 0.0F, max, max, min);
-    if (is_connected(metadata, Direction.SOUTH))
+    if (s.get(Direction.SOUTH.property))
       add_box(boxes, box, x, y, z, min, min, max, max, max, 1.0F);
-    if (is_connected(metadata, Direction.WEST))
+    if (s.get(Direction.WEST.property))
       add_box(boxes, box, x, y, z, 0.0F, min, min, min, max, max);
-    if (is_connected(metadata, Direction.EAST))
+    if (s.get(Direction.EAST.property))
       add_box(boxes, box, x, y, z, max, min, min, 1.0F, max, max);
-    if (is_connected(metadata, Direction.DOWN))
+    if (s.get(Direction.DOWN.property))
       add_box(boxes, box, x, y, z, min, 0.0F, min, max, min, max);
-    if (is_connected(metadata, Direction.UP))
+    if (s.get(Direction.UP.property))
       add_box(boxes, box, x, y, z, min, max, min, max, 1.0F, max);
   }
 
@@ -120,26 +138,19 @@ public class wire_block extends TemplateBlock {
   }
 
   private void update_connections(World world, int x, int y, int z) {
-    int metadata = 0;
+    BlockState state = getDefaultState();
     
     for (Direction dir : Direction.values()) {
       int nx = x + dir.dx;
       int ny = y + dir.dy;
       int nz = z + dir.dz;
-      if (is_wire(world, nx, ny, nz)) {
-        metadata |= (1 << dir.bit);
-      }
+      state = state.with(dir.property, is_wire(world, nx, ny, nz));
     }
     
-    world.setBlockMeta(x, y, z, metadata);
-    world.blockUpdateEvent(x, y, z);
+    world.setBlockStateWithoutNotifyingNeighbors(x, y, z, state);
   }
 
   private boolean is_wire(World world, int x, int y, int z) {
     return world.getBlockId(x, y, z) == this.id;
-  }
-
-  private boolean is_connected(int metadata, Direction dir) {
-    return (metadata & (1 << dir.bit)) != 0;
   }
 }

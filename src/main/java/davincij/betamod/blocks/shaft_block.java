@@ -89,9 +89,9 @@ public class shaft_block extends TemplateBlock {
     if (yaw < 0) yaw += 360;
     
     if ((yaw >= 45 && yaw < 135) || (yaw >= 225 && yaw < 315)) {
-      return axis.Z;
-    } else {
       return axis.X;
+    } else {
+      return axis.Z;
     }
   }
 }
