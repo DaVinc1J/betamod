@@ -18,10 +18,11 @@
   "environment": "*",
   "entrypoints": {
     "stationapi:event_bus": [
-      "davincij.betamod.events.initialise",
-      "davincij.betamod.events.item",
-      "davincij.betamod.events.block",
-      "davincij.betamod.events.recipe"
+      "davincij.betamod.event.initialise",
+      "davincij.betamod.event.item",
+      "davincij.betamod.event.block",
+      "davincij.betamod.event.recipe",
+      "davincij.betamod.event.block_entity"
     ],
     "stationapi:event_bus_client": [
     ],

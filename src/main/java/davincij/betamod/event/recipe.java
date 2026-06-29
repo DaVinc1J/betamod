@@ -1,12 +1,12 @@
-package davincij.betamod.events;
+package davincij.betamod.event;
 
 import net.mine_diver.unsafeevents.listener.EventListener;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import davincij.betamod.events.block;
-import davincij.betamod.events.item;
+import davincij.betamod.event.block;
+import davincij.betamod.event.item;
 
 import net.modificationstation.stationapi.api.event.recipe.RecipeRegisterEvent;
 import net.modificationstation.stationapi.api.recipe.SmeltingRegistry;
@@ -31,7 +31,7 @@ public class recipe {
           'o', new ItemStack(item.copper_ingot));
 
       CraftingRegistry.addShapedRecipe(
-          new ItemStack(block.shaft),
+          new ItemStack(block.shaft, 4),
           "I",
           "I",
           'I', new ItemStack(Item.IRON_INGOT));

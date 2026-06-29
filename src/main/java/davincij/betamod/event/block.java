@@ -1,8 +1,8 @@
-package davincij.betamod.events;
+package davincij.betamod.event;
 
-import davincij.betamod.blocks.simple_block;
-import davincij.betamod.blocks.wire_block;
-import davincij.betamod.blocks.shaft_block;
+import davincij.betamod.block.simple_block;
+import davincij.betamod.block.wire_block;
+import davincij.betamod.block.shaft_block;
 
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.Block;

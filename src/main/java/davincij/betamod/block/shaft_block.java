@@ -1,22 +1,26 @@
-package davincij.betamod.blocks;
+package davincij.betamod.block;
 
 import java.util.Locale;
 
+import davincij.betamod.block.entity.mechanical_block_entity;
+
 import net.minecraft.block.Block;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+
 import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.state.StateManager;
 import net.modificationstation.stationapi.api.state.property.EnumProperty;
-import net.modificationstation.stationapi.api.template.block.TemplateBlock;
+import net.modificationstation.stationapi.api.template.block.TemplateBlockWithEntity;
 import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.StringIdentifiable;
 import net.modificationstation.stationapi.api.world.BlockStateView;
 
-public class shaft_block extends TemplateBlock {
+public class shaft_block extends TemplateBlockWithEntity {
   public enum axis implements StringIdentifiable {
     X(0.0F, 0.375F, 0.375F, 1.0F, 0.625F, 0.625F),
     Y(0.375F, 0.0F, 0.375F, 0.625F, 1.0F, 0.625F),
@@ -55,6 +59,11 @@ public class shaft_block extends TemplateBlock {
   public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
     super.appendProperties(builder);
     builder.add(AXIS);
+  }
+
+  @Override
+  protected BlockEntity createBlockEntity() {
+    return new mechanical_block_entity();
   }
 
   @Override

@@ -1,4 +1,4 @@
-package davincij.betamod.events;
+package davincij.betamod.event;
 
 import net.modificationstation.stationapi.api.mod.entrypoint.EntrypointManager;
 import net.modificationstation.stationapi.api.util.Namespace;

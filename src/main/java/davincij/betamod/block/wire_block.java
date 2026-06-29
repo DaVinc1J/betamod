@@ -1,22 +1,26 @@
-package davincij.betamod.blocks;
+package davincij.betamod.block;
 
 import java.util.ArrayList;
 
+import davincij.betamod.block.entity.electrical_block_entity;
+
 import net.minecraft.block.Block;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+
 import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.state.StateManager;
 import net.modificationstation.stationapi.api.state.property.BooleanProperty;
-import net.modificationstation.stationapi.api.template.block.TemplateBlock;
+import net.modificationstation.stationapi.api.template.block.TemplateBlockWithEntity;
 import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.world.BlockStateView;
 
-public class wire_block extends TemplateBlock {
+public class wire_block extends TemplateBlockWithEntity {
   public enum Direction {
     NORTH("north", 0, 0, -1),
     SOUTH("south", 0, 0, 1),
@@ -57,6 +61,11 @@ public class wire_block extends TemplateBlock {
     for (Direction dir : Direction.values()) {
       builder.add(dir.property);
     }
+  }
+
+  @Override
+  protected BlockEntity createBlockEntity() {
+    return new electrical_block_entity();
   }
 
   @Override

@@ -1,4 +1,4 @@
-package davincij.betamod.blocks;
+package davincij.betamod.block;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
