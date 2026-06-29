@@ -19,12 +19,12 @@ public class simple_block extends TemplateBlock {
   private final int[] textures = new int[6];
   private boolean directional = false;
 
-  public simple_block(Identifier identifier, Material material, float hardness, float resistance, BlockSoundGroup block_sounds) {
+  public simple_block(Identifier identifier, Material material, float hardness, float resistance, BlockSoundGroup sg) {
     super(identifier, material);
     setTranslationKey(identifier.namespace, identifier.path);
     setHardness(hardness);
     setResistance(resistance);
-    setSoundGroup(block_sounds);
+    setSoundGroup(sg);
   }
 
   @Override

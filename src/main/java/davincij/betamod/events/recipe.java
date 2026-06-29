@@ -3,11 +3,10 @@ package davincij.betamod.events;
 import net.mine_diver.unsafeevents.listener.EventListener;
 
 import net.minecraft.item.Item;
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
-import davincij.betamod.blocks;
-import davincij.betamod.items;
+import davincij.betamod.events.block;
+import davincij.betamod.events.item;
 
 import net.modificationstation.stationapi.api.event.recipe.RecipeRegisterEvent;
 import net.modificationstation.stationapi.api.recipe.SmeltingRegistry;
@@ -16,7 +15,7 @@ import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.util.Namespace;
 
 
-public class recipe_listener {
+public class recipe {
   @Entrypoint.Namespace
   public static Namespace NAMESPACE;
 
@@ -25,21 +24,36 @@ public class recipe_listener {
     RecipeRegisterEvent.Vanilla type = RecipeRegisterEvent.Vanilla.fromType(event.recipeId);  
 
     if (type == RecipeRegisterEvent.Vanilla.CRAFTING_SHAPED) {
+
       CraftingRegistry.addShapedRecipe(
-        new ItemStack(blocks.copper_block), // Output
-        "ooo", "ooo", "ooo",
-        'o', new ItemStack(items.copper_ingot)
-      );
+          new ItemStack(block.shaft), 
+          "ooo", "ooo", "ooo", 
+          'o', new ItemStack(item.copper_ingot));
+
+      CraftingRegistry.addShapedRecipe(
+          new ItemStack(block.shaft),
+          "I",
+          "I",
+          'I', new ItemStack(Item.IRON_INGOT));
     }
 
     if (type == RecipeRegisterEvent.Vanilla.CRAFTING_SHAPELESS) {
+      CraftingRegistry.addShapelessRecipe(
+          new ItemStack(item.copper_ingot, 9),
+          new ItemStack(block.copper_block)
+          );
+
+      CraftingRegistry.addShapelessRecipe(
+          new ItemStack(block.copper_wire, 4),
+          new ItemStack(item.copper_ingot)
+          );
     }  
 
     if (type == RecipeRegisterEvent.Vanilla.SMELTING) {
       SmeltingRegistry.addSmeltingRecipe(
-        new ItemStack(blocks.copper_ore),
-        new ItemStack(items.copper_ingot, 2)
-        );
+          new ItemStack(block.copper_ore),
+          new ItemStack(item.copper_ingot, 2)
+          );
     }  
   }
 }

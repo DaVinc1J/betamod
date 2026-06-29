@@ -1,11 +1,11 @@
-package davincij.betamod.events.init;
+package davincij.betamod.events;
 
 import net.modificationstation.stationapi.api.mod.entrypoint.EntrypointManager;
 import net.modificationstation.stationapi.api.util.Namespace;
 
 import java.lang.invoke.MethodHandles;
 
-public class init_listener {
+public class initialise {
     static {
         EntrypointManager.registerLookup(MethodHandles.lookup());
     }

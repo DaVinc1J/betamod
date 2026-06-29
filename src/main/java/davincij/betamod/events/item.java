@@ -6,11 +6,10 @@ import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.util.Namespace;
 
-public class item_listener {
+public class item {
 
   public static simple_item
-    copper_ingot,
-    copper_wire;
+    copper_ingot;
 
   @Entrypoint.Namespace
   public static Namespace NAMESPACE;
@@ -19,6 +18,5 @@ public class item_listener {
   @EventListener
   public void registerItems(ItemRegistryEvent event) {
     copper_ingot = new simple_item(NAMESPACE.id("copper_ingot"));
-    copper_wire = new simple_item(NAMESPACE.id("copper_wire"));
   }
 }

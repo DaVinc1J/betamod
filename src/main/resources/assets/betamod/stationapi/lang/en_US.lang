@@ -2,4 +2,4 @@
 tile.@.copper_ore.name = Copper Ore
 tile.@.copper_block.name = Copper Block
 item.@.copper_ingot.name = Copper Ingot
-item.@.copper_wire.name = Copper Wire
+tile.@.copper_wire.name = Copper Wire

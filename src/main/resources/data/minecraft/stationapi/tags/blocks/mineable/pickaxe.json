@@ -1,6 +1,7 @@
 {
   "values": [
     "betamod:copper_ore",
-    "betamod:copper_block"
+    "betamod:copper_block",
+    "betamod:copper_wire"
   ]
 }

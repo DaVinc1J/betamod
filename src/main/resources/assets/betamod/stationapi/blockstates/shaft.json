@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "0": { "model": "davincij:block/shaft" },
+    "1": { "model": "davincij:block/shaft", "x": 90 },
+    "2": { "model": "davincij:block/shaft", "z": 90 }
+  }
+}
